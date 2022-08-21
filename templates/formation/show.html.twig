@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+
+{% for formation in formation.sessions %}
+
+    {{ formation.lieu}}
+
+{% endfor %}
+
+{% endblock %}
+

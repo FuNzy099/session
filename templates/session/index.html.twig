@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+
+<h1>je suis dans session</h1>
+
+{# On concaténe formation avec session pour récupérer la collection de session d'une formation #}
+{% for session in formation.sessions %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Lieu</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Date de début</th>
+            <th scope="col">Date de fin</th>
+            <th scope="col">Place total</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ session.lieu }}</td>
+                <td>{{ session.statut }}</td>
+                <td>{{ session.dateDebut | date("d/m/Y") }}</td>
+                <td>{{ session.dateFin | date("d/m/Y") }}</td>
+                <td>{{ session.placeTotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endfor %}
+
+
+{% endblock %}

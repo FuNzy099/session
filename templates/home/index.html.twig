@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block stylesheets %}
+
+<link href="{{ asset('css/stylesHome.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+
+    <header id="home">
+
+        <figure>
+            <img src="{{ asset('img/formation.jpg')}}" alt="">
+            <figcaption>
+                <h1>Découvrez nos parcours de formations </h1>
+                <p>Apprenez un métier d'avenir grâce à nos différentes formations</p>
+            </figcaption>
+        </figure>
+
+    </header>
+
+    <body>
+        <h2>Dans quel domaine souhaitez-vous vous former ? </h2>
+
+        <div class="mesCartes">
+            {% for formation in formations %}
+    
+                <div class="carte">
+                    <figure class="figImage">
+                        <img src="{{ formation.banniere }}" alt="">
+                    </figure>
+                    <div class="infoCarte">
+                        <h5>{{ formation.titre }}</h5>
+                        <p>{{ formation.descriptif }}</p>
+                        <a href="{{ path('showDetailFormation',{'idFormation': formation.id}) }}" class="btn btn-primary">Plus d'information</a>
+                    </div>
+                </div>
+    
+            {% endfor %}
+        </div>
+    </body>
+
+{% endblock %}

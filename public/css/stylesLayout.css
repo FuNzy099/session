@@ -1,0 +1,47 @@
+nav{
+  background-color: rgb(255, 153, 0);
+  height: 65px;
+  align-items: center;
+}
+
+.logo{
+  width: 20%;
+  margin-left: 10%;
+}
+
+.liens{
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+  margin-left: 20%;
+}
+
+.liens a{
+  text-decoration: none;
+  color: rgb(21, 82, 194);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.liens a:hover{
+  color: white;
+}
+
+.sociales{
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+  margin-left: 10%; 
+}
+
+
+.sociales a{
+  text-decoration: none;
+  color: rgb(21, 82, 194);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.sociales a:hover{
+  color: white;
+}

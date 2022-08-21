@@ -1,0 +1,114 @@
+/*paramètre général*/
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img
+{
+  width:100%;
+  height:auto;
+  margin:auto;
+}
+
+/* navigation */
+nav{
+  background-color: rgb(255, 153, 0);
+  height: 65px;
+  align-items: center;
+}
+
+.logo{
+  width: 20%;
+  margin-left: 10%;
+}
+
+.liens{
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+  margin-left: 20%;
+}
+
+.liens a{
+  text-decoration: none;
+  color: rgb(21, 82, 194);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.liens a:hover{
+  color: white;
+}
+
+.sociales{
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+  margin-left: 10%; 
+}
+
+.sociales a{
+  text-decoration: none;
+  color: rgb(21, 82, 194);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.sociales a:hover{
+  color: white;
+}
+
+
+/* image acceuil */
+figure{
+  display: flex;
+  position: relative;
+}
+
+figure figcaption{
+  color: white;
+  position: absolute;
+  top: 50%; 
+  left: 35%;
+  padding-right: 12%;
+  transform: translate(-50%, -50%);
+}
+
+figcaption h1{
+  font-size: 4em;
+}
+
+figcaption p{
+  font-size: 2em;
+  margin-top: 5%;
+}
+
+/* Cartes des formations */
+.mesCartes{
+  display: flex;
+}
+
+.carte{
+  width: 20%;
+  height: auto;
+  border: solid 1px grey;
+  margin: 1%;
+}
+
+.carte img{
+  object-fit: cover;
+  height: 300px;
+}
+
+.infoCarte{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.btn{
+  margin: auto;
+}
