@@ -12,9 +12,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/formation/{idFormation}", name="showDetailFormation")
+     * @Route("/formation/{idFormation}", name="showFormations")
      * @ParamConverter("formation", options={"mapping": {"idFormation": "id"}})
-     * todo | cette fonction permet d'afficher les sessions d'une formation à l'aide de son id
+     * todo | cette fonction permet d'afficher les sessions d'une formation à l'aide de son id (pour la formation id=x, je récupere les sessions)
+     * todo | Je l'apelle dans le lien au sein de home/index.html.twig
      */
     public function show(Formation $formation): Response
     {

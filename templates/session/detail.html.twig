@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+
+<h1>Details des information d'une session</h1>
+
+<h2>Liste des stagiaires inscrient dans la session</h2>
+
+{# Si le tableau est vide on affiche un message #}
+{% if session.stagiaires is empty  %}
+    <p>Aucun stagiaire inscrit dans cette session</p>
+
+    {# Sinon on affiche les stagiaires inscrient dans la session  #}
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telephone</th>
+                </tr>
+            </thead>
+            
+            {# Boucle qui permets d'afficher les stagiaires inscrient dans la formation #}
+            {# On concaténe session avec stagiaire pour récupérer la collection destagiaire dans une session #}
+            {% for stagiaire in session.stagiaires %}
+
+                <tbody>
+                    <tr>
+                        <td>{{stagiaire.nom }}</td>
+                        <td>{{stagiaire.prenom }}</td>
+                        <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
+                        <td>{{stagiaire.ville }}</td>
+                        <td>{{stagiaire.email }}</td>
+                        <td>{{stagiaire.telephone }}</td>
+                    </tr>
+                </tbody>
+                
+            {% endfor %}
+        </table>
+{% endif %}
+
+
+<h2>Programme de la session</h2>
+
+    {# Boucle qui permet d'afficher le ........ #}
+    {% for programme in  session.programmesSession %}
+    {{programme.atelier.nom}} {{ " " }} {{programme.nbJours}} jours <br>
+    {% endfor %}
+
+
+{% endblock %}

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    // ! Pour le moment sert à rien => A verifier !!!!!!!
     /**
      * @Route("/home", name="app_home")
      * todo | cette fonction permet d'afficher les formations dans le home

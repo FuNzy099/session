@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 
@@ -20,14 +21,15 @@ class SessionController extends AbstractController
     }
 
     /**
-     * @Route("/session", name="app_session")
+     * @Route("/session/{idSession}", name="showDetailsSession")
+     * @ParamConverter("session", options={"mapping": {"idSession": "id"}})
+     * todo | Cette function permet d'afficher les infos d'une session (ex: liste des stagiaires, programme de la session, etc etc)
+     * todo | Je l'apelle dans le lien au sein de session/index.html.twig
      */
-    public function index(ManagerRegistry $doctrine): Response
+    public function show(Session $session): Response
     {
-
-        $sessions = $doctrine -> getRepository(Session::class) -> findBy([], ["lieu" => "ASC"]);
-        return $this->render('session/index.html.twig', [
-            "session" => $sessions,
+        return $this->render('session/detail.html.twig', [
+            'session' => $session,
         ]);
     }
 }
