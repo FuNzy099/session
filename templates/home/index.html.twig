@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formation{% endblock %}
+{% block title %} Accueil {% endblock %}
 
 {% block stylesheets %}
 
-<link href="{{ asset('css/stylesHome.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/stylesLayout.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/stylesHome.css') }}" type="text/css" rel="stylesheet" />
 
 {% endblock %}
 
@@ -22,27 +23,30 @@
 
     </header>
 
-    <body>
-        <h2>Dans quel domaine souhaitez-vous vous former ? </h2>
-
-        <div class="mesCartes">
-            {# formation ce trouve dans FormationController #}
-            {% for formation in formations %}
-    
-                <div class="carte">
-                    <figure class="figImage">
-                        <img src="{{ formation.banniere }}" alt="">
-                    </figure>
-                    <div class="infoCarte">
-                        <h5>{{ formation.titre }}</h5>
-                        <p>{{ formation.descriptif }}</p>
-                        {# la methode showFormation ce trouve dans HomeController #}
-                        <a href="{{ path('showFormations',{'idFormation': formation.id}) }}" class="btn btn-primary">Plus d'information</a>
+    {# Si il y a un user en session on affiche les formations  #}
+    {% if app.user %}
+        <body>
+            <h2>Dans quel domaine souhaitez-vous vous former ? </h2>  
+        
+            <div class="mesCartes">
+                {# formation ce trouve dans FormationController #}
+                {% for formation in formations %}   
+        
+                    <div class="carte">
+                        <figure class="figImage">
+                            <img src="{{ formation.banniere }}" alt="">
+                        </figure>
+                        <div class="infoCarte">
+                            <h5>{{ formation.titre }}</h5>
+                            <p>{{ formation.descriptif }}</p>
+                            {# la methode showFormation ce trouve dans HomeController #}
+                            <a href="{{ path('showFormations',{'idFormation': formation.id}) }}" class="btn btn-primary">Plus d'information</a>
+                        </div>
                     </div>
-                </div>
-    
-            {% endfor %}
-        </div>
-    </body>
+        
+                {% endfor %}
+            </div>
+        </body>
+    {% endif %}
 
 {% endblock %}

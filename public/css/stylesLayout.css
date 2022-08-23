@@ -7,6 +7,9 @@ nav{
 .logo{
   width: 20%;
   margin-left: 10%;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: rgb(21, 82, 194);
 }
 
 .liens{

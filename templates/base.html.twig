@@ -25,11 +25,33 @@
 
         <header>
             <nav class="nav">
-                <span class="logo">Navbar</span>
-                <div class="liens">
-                    <a href="#"> ACCUEIL </a>
-                    <a href="#"> FORMATION </a>
-                </div>
+
+                {# Si il hexiste un user en session #}
+                {% if app.user %}
+
+                    {# Affichage du pseudo de l'utilisateur connecté #}
+                    <span class="logo">{{ app.user.prenom }}</span>
+
+                    <div class="liens">
+                        <a href="#"> Accueil </a>
+                        <a href="#"> Formation </a>
+                        <a href="{{ path('app_logout') }}"> Déconnexion </a>
+                    </div>
+
+                    {# Sinon #}
+                    {% else %}
+
+                    {# Affichage du logo du site #}
+                    <span class="logo">Elan</span>
+
+                    <div class="liens">
+                        <a href="{{ path('app_login')}}"> Connexion </a>
+                        <a href="{{ path('app_register')}}"> Inscription </a>
+                    </div>
+
+                {% endif %}
+            
+                {# Liens des reseaux sociaux pour le maillage externe #}
                 <div class="sociales">
                     <a href="#"> <i class="fa-brands fa-facebook fa-2xl"></i> </a>
                     <a href="#"> <i class="fa-brands fa-twitter fa-2xl"></i> </a>
