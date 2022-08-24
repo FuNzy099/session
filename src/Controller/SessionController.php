@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
+use doctrine;
 use App\Entity\Session;
+use App\Entity\Stagiaire;
 use App\Repository\FormationRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

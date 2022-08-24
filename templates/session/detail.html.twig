@@ -27,9 +27,9 @@
             </thead>
             
             {# Boucle qui permets d'afficher les stagiaires inscrient dans la formation #}
+            {# session ce trouve dans SessionController #}
             {# On concaténe session avec stagiaire pour récupérer la collection destagiaire dans une session #}
             {% for stagiaire in session.stagiaires %}
-
                 <tbody>
                     <tr>
                         <td>{{stagiaire.nom }}</td>
@@ -40,7 +40,6 @@
                         <td>{{stagiaire.telephone }}</td>
                     </tr>
                 </tbody>
-                
             {% endfor %}
         </table>
 {% endif %}
@@ -52,6 +51,11 @@
     {% for programme in  session.programmesSession %}
     {{programme.atelier.nom}} {{ " " }} {{programme.nbJours}} jours <br>
     {% endfor %}
+
+    <a href="{{ path('ajouterAtelier', {'id': session.id}) }}">
+        <button>Ajouter un atelier</button>
+    </a>
+
 
 
 {% endblock %}

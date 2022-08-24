@@ -15,19 +15,32 @@
             <th scope="col">Date de début</th>
             <th scope="col">Date de fin</th>
             <th scope="col">Place total</th>
+            <th scope="col">Nombre d'inscrit</th>
+            <th scope="col">Place restante</th>
         </tr>
     </thead>
     
+        {# formation ce trouve dans FormationController #}
         {# On concaténe formation avec session pour récupérer la collection de session d'une formation #}
         {% for session in formation.sessions %}
             <tbody>
                 <tr>
                     {# la methode showDetailsSession ce trouve dans SessionController #}
                     <td><a href="{{ path('showDetailsSession',{'idSession': session.id}) }}">{{ session.lieu }}</a></td>
+
                     <td>{{ session.statut }}</td>
+
                     <td>{{ session.dateDebut | date("d/m/Y") }}</td>
+
                     <td>{{ session.dateFin | date("d/m/Y") }}</td>
+
                     <td>{{ session.placeTotal }}</td>
+                    
+                    {# nbInscrit ce trouve dans l'entity session, il permet de calculer le nombre d'inscrit dans une session de formation #}
+                    <td>{{ session.nbInscrit }}</td>
+                
+                    {# nbrestant ce trouve dans l'entity session, il permet de calculer le nombre de places restant à une session de formation #}
+                    <td>{{ session.nbRestant }}</td>
                 </tr>
             </tbody>
         {% endfor %}

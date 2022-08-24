@@ -10,11 +10,18 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
+{# 
+    {{ form_start(registrationForm) }} #}
+        {# {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/Symfony/session/src/Controller/StagiaireController.php'|file_link(0) }}">src/Controller/StagiaireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/Symfony/session/templates/stagiaire/index.html.twig'|file_link(0) }}">templates/stagiaire/index.html.twig</a></code></li>
-    </ul>
+        <button type="submit" class="btn btn-lg btn-primary">Register</button> #}
+    {# {{ form_end(registrationForm) }} #}
+  
 </div>
 {% endblock %}

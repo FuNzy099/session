@@ -197,4 +197,20 @@ class Session
 
         return $this;
     }
+
+    // Function permettant de calculer le nombre de place restant dans une session de formation
+    public function nbRestant()
+    {
+        $nbInscrit = count($this -> stagiaires);    //// On compte le nombre d'inscrit avec la function count()
+        $nbPlaceTotal = $this -> placeTotal;        //// On déclare le nombre de place total à un formation
+        $nbRestant = $nbPlaceTotal - $nbInscrit;    //// On soustrait le nombre d'inscrit au place total
+        return $nbRestant;                          //// On return le résultat
+    }
+
+    // Function permettant de calculer le nombre d'inscrit à une session de formation
+    public function nbInscrit()
+    {
+        $nbInscrit = count($this -> stagiaires);    //// On compte le nombre d'inscrit avec la function count()
+        return $nbInscrit;                          //// On return le résultat
+    }
 }

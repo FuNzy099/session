@@ -29,9 +29,8 @@
             <h2>Dans quel domaine souhaitez-vous vous former ? </h2>  
         
             <div class="mesCartes">
-                {# formation ce trouve dans FormationController #}
+                {# formations ce trouve dans HomeController #}
                 {% for formation in formations %}   
-        
                     <div class="carte">
                         <figure class="figImage">
                             <img src="{{ formation.banniere }}" alt="">
@@ -39,7 +38,7 @@
                         <div class="infoCarte">
                             <h5>{{ formation.titre }}</h5>
                             <p>{{ formation.descriptif }}</p>
-                            {# la methode showFormation ce trouve dans HomeController #}
+                            {# la methode showFormation ce trouve dans FormationController #}
                             <a href="{{ path('showFormations',{'idFormation': formation.id}) }}" class="btn btn-primary">Plus d'information</a>
                         </div>
                     </div>

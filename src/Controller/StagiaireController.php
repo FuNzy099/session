@@ -17,4 +17,14 @@ class StagiaireController extends AbstractController
             'controller_name' => 'StagiaireController',
         ]);
     }
+
+    /**
+     * @Route("/stagiaire", name="ajouterStagiaire")
+     */
+    public function ajouterStagiaire(): Response
+    {
+        return $this->render('stagiaire/index.html.twig', [
+            
+        ]);
+    }
 }
