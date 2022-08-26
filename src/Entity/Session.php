@@ -213,4 +213,5 @@ class Session
         $nbInscrit = count($this -> stagiaires);    //// On compte le nombre d'inscrit avec la function count()
         return $nbInscrit;                          //// On return le résultat
     }
+    
 }

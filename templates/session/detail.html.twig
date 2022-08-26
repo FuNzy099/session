@@ -50,10 +50,12 @@
     {# Boucle qui permet d'afficher le ........ #}
     {% for programme in  session.programmesSession %}
     {{programme.atelier.nom}} {{ " " }} {{programme.nbJours}} jours <br>
+    {# <a href="{{ path('editAtelier', {'id': programme.atelier.id}) }}" class="btn btn-warning"> Editer </a> <br> #}
+
     {% endfor %}
 
-    <a href="{{ path('ajouterAtelier', {'id': session.id}) }}">
-        <button>Ajouter un atelier</button>
+    <a href="{{ path('ajouterCategorie') }}">
+        <button>Ajouter une categorie</button>
     </a>
 
 

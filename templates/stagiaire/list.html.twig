@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des stagiaires{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telephone</th>
+            </tr>
+        </thead>
+        
+        {# Boucle qui permets d'afficher tout les stagiaires  #}
+        {% for stagiaire in stagiaires %}
+            <tbody>
+                <tr>
+                    <td>{{stagiaire.nom }}</td>
+                    <td>{{stagiaire.prenom }}</td>
+                    <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
+                    <td>{{stagiaire.ville }}</td>
+                    <td>{{stagiaire.email }}</td>
+                    <td>{{stagiaire.telephone }}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+    <a href="{{ path('ajouterStagiaire') }}"> <button>Ajouter un stagiaire </button> </a>
+
+{% endblock %}

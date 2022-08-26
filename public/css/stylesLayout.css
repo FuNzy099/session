@@ -24,6 +24,7 @@ nav{
   color: rgb(21, 82, 194);
   font-size: 1.2em;
   font-weight: bold;
+  margin-left: 5%;
 }
 
 .liens a:hover{
