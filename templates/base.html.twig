@@ -33,9 +33,9 @@
                     <span class="logo">{{ app.user.prenom }}</span>
 
                     <div class="liens">
-                        <a href="#"> Accueil </a>
+                        <a href="{{ path('app_home') }}"> Accueil </a>
                         <a href="#"> Formation </a>
-                        <a href="#"> Stagiaires</a>
+                        <a href="{{ path('showListStagiaires') }}"> Stagiaires</a>
                         <a href="{{ path('app_logout') }}"> Déconnexion </a>
                     </div>
 

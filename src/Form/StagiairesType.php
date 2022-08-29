@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Session;
+use App\Entity\Formation;
 use App\Entity\Stagiaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +15,8 @@ class StagiairesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+
         $builder
             ->add('nom')
             ->add('prenom')
@@ -21,11 +24,12 @@ class StagiairesType extends AbstractType
             ->add('ville')
             ->add('email')
             ->add('telephone')
-            ->add('sessions', EntityType::class, [
-                'class' => Session::class,
-                'choice_label' => 'lieu',
-                'mapped' => false
-            ])
+            // ->add('sessions', EntityType::class, [
+            //     'class' => Session::class,
+            //     'choice_label' => 'lieu',
+            
+            //     'mapped' => false
+            // ])
             ->add('submit', SubmitType::class)
         ;
     }

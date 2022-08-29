@@ -12,6 +12,7 @@
                 <th scope="col">Ville</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telephone</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         
@@ -25,6 +26,10 @@
                     <td>{{stagiaire.ville }}</td>
                     <td>{{stagiaire.email }}</td>
                     <td>{{stagiaire.telephone }}</td>
+                    <td> 
+                        <a href="{{ path('deleteStagiaire', {'id': stagiaire.id}) }}"> <button>supprimer</button> </a>
+                        <a href="{{ path('modifierStagiaire', {'id': stagiaire.id}) }}"> <button>modifier</button> </a>
+                    </td> 
                 </tr>
             </tbody>
         {% endfor %}
