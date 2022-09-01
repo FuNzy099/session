@@ -39,28 +39,72 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Session[] Returns an array of Session objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findNonInscrit($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
 
-//    public function findOneBySomeField($value): ?Session
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $qd = $sub;
+        $qd->select('s')
+            ->from('App\Entity\Stagiaire', 's')
+            ->leftJoin('s.sessions', 'se')
+            ->where('se.id = :id');
+
+        $sub = $em->createQueryBuilder();
+        $sub->select('st')
+            ->from('App\Entity\Stagiaire', 'st')
+            ->where($sub->expr()->notIn('st.id', $qd->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('st.nom');
+
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
+    // public function findNonProgrammer($session_id)
+    // {
+    //     $em = $this -> getEntityManager();
+    //     $sub = $em -> createQueryBuilder(); 
+    //     $qd = $sub;
+    //     $qd -> select('s')
+    //         -> from('App\Entity\Programme', 's') 
+    //         -> leftJoin('s.sessions', 'se')
+    //         -> where('se.id = :id'); 
+    //     $sub = $em -> createQueryBuilder();
+
+    //     $sub -> select('st')
+    //          -> from('App\Entity\Programme', 'st') 
+    //          -> where($sub -> expr() -> notIn('st.id', $qd -> getDQL())) 
+    //          -> setParameter('id', $session_id) 
+    //          -> orderBy('st.nbJours');   
+    //     $query = $sub -> getQuery(); 
+    //     return $query -> getResult();
+
+    // }
+
+
+    //    /**
+    //     * @return Session[] Returns an array of Session objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('s.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Session
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

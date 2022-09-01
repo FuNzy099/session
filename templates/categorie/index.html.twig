@@ -2,9 +2,36 @@
 
 {% block title %}Hello CategorieController!{% endblock %}
 
-
 {% block body %}
 
-    {{ form(formAddStagiaireSession) }}
+<h1>Liste des catégories</h1>
+
+<a href="{{ path('ajouterCategorie') }}"> <button>Ajouter une catégorie</button> </a>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Ateliers</th>
+            <th scope="col">options</th>
+        </tr>
+    </thead>
+
+    {# Boucle qui permets d'afficher toutes les catgories #}
+    {# categorie ce trouve dans CategorieController #}
+    {% for categorie in categories %}
+    <tbody>
+        <tr>
+            <td> <a href="{{ path('showDetailCategorie', {'idCategorie': categorie.id} )}}"> {{categorie.nom }} </a> </td>
+            <td>{{categorie.nbAteliers }}</td>
+            <td>
+                <a href="{{ path('supprimerCategorie', {'id': categorie.id} )}}"> <button>Supprimer</button> </a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
 
 {% endblock %}

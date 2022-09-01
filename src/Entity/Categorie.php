@@ -80,4 +80,10 @@ class Categorie
 
         return $this;
     }
+
+    public function nbAteliers()
+    {
+        $nbAteliers = count($this->ateliers);
+        return $nbAteliers;
+    }
 }

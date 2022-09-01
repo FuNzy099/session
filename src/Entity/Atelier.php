@@ -32,19 +32,12 @@ class Atelier
     private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Programme::class, mappedBy="atelier", orphanRemoval=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $pro;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Programme::class, mappedBy="atelier", orphanRemoval=true)
-     */
-    private $programmesAtelier;
+    private $description;
 
     public function __construct()
     {
-        $this->programmes = new ArrayCollection();
-        $this->pro = new ArrayCollection();
         $this->programmesAtelier = new ArrayCollection();
     }
 
@@ -104,6 +97,18 @@ class Atelier
                 $programmesAtelier->setAtelier(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

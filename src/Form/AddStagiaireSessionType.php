@@ -19,9 +19,14 @@ class AddStagiaireSessionType extends AbstractType
                 'choice_label' => 'nom',
                 'mapped' => false
             ])
-            
-            ->add('Submit', SubmitType::class)
-        ;
+
+            // ->add('prenom', EntityType::class, [
+            //     'class' => Stagiaire::class,
+            //     'choice_label' => 'prenom',
+            //     'mapped' => false
+            // ])
+
+            ->add('Submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

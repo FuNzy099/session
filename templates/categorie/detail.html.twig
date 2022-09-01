@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie | {{categorie.nom}} {% endblock %}
+
+
+
+{% block body %}
+
+<h1>Ateliers de la categorie : {{categorie.nom}}</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">description</th>
+            <th scope="col">option</th>
+        </tr>
+    </thead>
+
+    {# Boucle qui permets d'afficher les stagiaires inscrient dans la formation #}
+    {# session ce trouve dans SessionController #}
+    {# On concaténe session avec stagiaire pour récupérer la collection destagiaire dans une session #}
+    {% for atelier in categorie.ateliers %}
+    {# {{ dump(ateliers) }} #}
+    <tbody>
+        <tr>
+            <td>{{atelier.nom }}</td>
+            <td>{{atelier.description}}</td>
+            <td>
+                <a href="#"><button>Modifier</button> </a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

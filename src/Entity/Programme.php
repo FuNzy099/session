@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
- * @ORM\Entity(repositoryClass=ProgrammeRepository::class)
+ * ORM\Entity(repositoryClass=ProgrammeRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\ProgrammeRepository")
  */
 class Programme
 {
