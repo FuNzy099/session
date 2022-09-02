@@ -2,124 +2,210 @@
 
 {% block title %}Session{% endblock %}
 
+{% block stylesheets %}
+
+<link href="{{ asset('css/stylesLayout.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('css/detailSession.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
 {% block body %}
 
 <h1>Details de la formation {{ session.formation.titre|lower }}</h1>
 
-<h2>Liste des stagiaires inscrits dans la session</h2>
 
-{# --------------------- Tableau pour afficher les stagiaires inscrits à une session #}
+<div id="contentStagiaires">
 
-{# Si le tableau est vide on affiche un message #}
-{% if session.stagiaires is empty %}
+    <div id="blockNonInscrit" class="blocks">
 
-<p>Aucun stagiaire inscrit dans cette session</p>
-
-{# Sinon on affiche les stagiaires inscrient dans la session #}
-{% else %}
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prenom</th>
-            <th scope="col">Date de naissance</th>
-            <th scope="col">Ville</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">option</th>
-        </tr>
-    </thead>
-
-    {# Boucle qui permets d'afficher les stagiaires inscrient dans la formation #}
-    {# session ce trouve dans SessionController #}
-    {# On concaténe session avec stagiaire pour récupérer la collection destagiaire dans une session #}
-    {% for stagiaire in session.stagiaires %}
-    <tbody>
-        <tr>
-            <td>{{stagiaire.nom }}</td>
-            <td>{{stagiaire.prenom }}</td>
-            <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
-            <td>{{stagiaire.ville }}</td>
-            <td>{{stagiaire.email }}</td>
-            <td>{{stagiaire.telephone }}</td>
-            <td>
-                <a href="{{ path('deleteStagiaireSession', {'idSession': session.id, 'idStagiaire': stagiaire.id} )}}"><button>désinscrire</button>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-    {% endfor %}
-</table>
-{% endif %}
+        <h2>Liste des stagiaires</h2>
 
 
+        <div class="contourBlock">
 
-<h2>Liste des stagiaires</h2>
+            {# --------------------- Tableau pour afficher l'enssemble des stagiaires #}
 
-{# --------------------- Tableau pour afficher l'enssemble des stagiaires #}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Date de naissance</th>
+                        <th scope="col">Ville</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prenom</th>
-            <th scope="col">Date de naissance</th>
-            <th scope="col">Ville</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-
-    {# Boucle qui permets d'afficher tout les stagiaires #}
-    {% for stagiaire in stagiaires %}
-    <tbody>
-        <tr>
-            <td>{{stagiaire.nom }}</td>
-            <td>{{stagiaire.prenom }}</td>
-            <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
-            <td>{{stagiaire.ville }}</td>
-            <td>{{stagiaire.email }}</td>
-            <td>{{stagiaire.telephone }}</td>
-            <td>
-                <a href="{{ path('addStagiaireSession', {'idSession': session.id, 'idStagiaire': stagiaire.id} )}}">
-                    <button>inscrire</button> </a>
-            </td>
-        </tr>
-    </tbody>
-    {% endfor %}
-</table>
+                {# Boucle qui permets d'afficher tout les stagiaires #}
+                <tbody>
+                    {% for stagiaire in stagiaires %}
+                    <tr>
+                        <td>{{stagiaire.nom }}</td>
+                        <td>{{stagiaire.prenom }}</td>
+                        <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
+                        <td>{{stagiaire.ville }}</td>
+                        <td>{{stagiaire.email }}</td>
+                        <td>{{stagiaire.telephone }}</td>
+                        <td>
+                            <a
+                                href="{{ path('addStagiaireSession', {'idSession': session.id, 'idStagiaire': stagiaire.id} )}}"><button>inscrire</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 
-<h2>Liste des stagiaires</h2>
-
-{% for programme in programmes %}
-    {{programme.atelier.nom}} 
-    {{programme.nbJours}}<br>
-    {# {{ dump(programme) }} #}
-
-{% endfor %}
-
-{# --------------------- Tableau pour afficher le programme de la session #}
+    <div id="blockInscrit">
 
 
+        <h2>Liste des stagiaires inscrits dans la session</h2>
+
+        <div class="contourBlock" class="blocks">
+            {# --------------------- Tableau pour afficher les stagiaires inscrits à une session #}
+
+            {# Si le tableau est vide on affiche un message #}
+            {% if session.stagiaires is empty %}
+
+
+            <p>Aucun stagiaire inscrit dans cette session</p>
+
+
+            {# Sinon on affiche les stagiaires inscrient dans la session #}
+            {% else %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Date de naissance</th>
+                        <th scope="col">Ville</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">option</th>
+                    </tr>
+                </thead>
+
+                {# Boucle qui permets d'afficher les stagiaires inscrient dans la formation #}
+                {# session ce trouve dans SessionController #}
+                {# On concaténe session avec stagiaire pour récupérer la collection destagiaire dans une session #}
+                <tbody>
+                    {% for stagiaire in session.stagiaires %}
+                    <tr>
+                        <td>{{stagiaire.nom }}</td>
+                        <td>{{stagiaire.prenom }}</td>
+                        <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
+                        <td>{{stagiaire.ville }}</td>
+                        <td>{{stagiaire.email }}</td>
+                        <td>{{stagiaire.telephone }}</td>
+                        <td>
+                            <a
+                                href="{{ path('deleteStagiaireSession', {'idSession': session.id, 'idStagiaire': stagiaire.id} )}}"><button>désinscrire</button>
+                            </a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            <p>Stagiaires total : {{session.nbInscrit}}</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="contentAteliers">
+
+    <div id="blockNonProgrammer" class="blocks">
+
+        <h2>Ateliers non programmés</h2>
+
+        <div class="contourBlock">
+
+            {# --------------------- Tableau pour afficher les ateliers NON programmés #}
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Jours</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+
+                {# Boucle qui permets d'afficher tout les stagiaires #}
+                <tbody>
+                    {% for nonProgramme in nonProgrammes %}
+                    <form
+                        action="{{ path('addProgrammeSession', {'idSession' : session.id, 'idAtelier': nonProgramme.id})}}"
+                        method="post">
+                        <tr>
+                            <td>{{nonProgramme.nom}}</td>
+                            <td><input type="number" name="nbJours" id="" min="1"></td>
+                            <td>
+                                <button type="submit" name="submit">Programmer</button>
+                            </td>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="blockProgrammer" class="blocks">
+        <h2>Programme de la session</h2>
+
+        <div class="contourBlock">
+
+            {# --------------------- Tableau pour afficher les ateliers programmés #}
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Jours</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+
+                {# Boucle qui permets d'afficher tout les stagiaires #}
+                <tbody>
+                    {% for programme in session.programmesSession %}
+                    <tr>
+                        <td>{{ programme.atelier.nom }}</td>
+                        <td>{{ programme.nbJours}}</td>
+                        <td>
+                            <a
+                                href="{{ path('deleteProgrammeSession', {'idSession': session.id, 'idProgramme': programme.id} )}}"><button>déprogrammer</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="toto">
+                <p> Programmes total : {{session.nbProgrammes}}</p>
+                {% for programme in session.programmesSession %}}
+                {{ dump(session.nbJoursToto) }}
+                {# <p>Jours total : {{programme.nbJoursToto}}</p> #}
+                {% endfor %}
+            </div>
+            <div>
+            </div>
+            <div>
 
 
 
-{# <h2>Programme de la session</h2> #}
 
-{# Boucle qui permet d'afficher le ........ #}
-{# {% for programme in session.programmesSession %}
-{{programme.atelier.nom}} {{ " " }} {{programme.nbJours}} jours <br> #}
-{# <a href="{{ path('editAtelier', {'id': programme.atelier.id}) }}" class="btn btn-warning"> Editer </a> <br> #}
-{#
-{% endfor %}
-
-<a href="{{ path('ajouterCategorie') }}">
-    <button>Ajouter une categorie</button>
-</a> #}
-
-
-
-{% endblock %}
+                {% endblock %}

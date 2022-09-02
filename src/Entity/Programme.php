@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProgrammeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
- * ORM\Entity(repositoryClass=ProgrammeRepository::class)
- * @ORM\Entity(repositoryClass="App\Repository\ProgrammeRepository")
+ * @ORM\Entity(repositoryClass=ProgrammeRepository::class)
  */
 class Programme
 {
@@ -81,4 +81,17 @@ class Programme
 
         return $this;
     }
+    // public function nbJoursToto(array $nbJours)
+    // {
+    // $sum = array_sum($nbJours);
+    // foreach($nbJours as $nbJour){
+    //     $sum += is_array($nbJour);
+    // }
+    // return $sum;      
+
+
+
+
+    // }
+
 }

@@ -1,29 +1,39 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Session{% endblock %}
+
+{% block stylesheets %}
+
+    <link href="{{ asset('css/stylesLayout.css') }}" type="text/css" rel="stylesheet"  />
+    <link href="{{ asset('css/indexSession.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
 
 {% block body %}
 
 <h1>je suis dans session</h1>
 
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Lieu</th>
-            <th scope="col">Statut</th>
-            <th scope="col">Date de début</th>
-            <th scope="col">Date de fin</th>
-            <th scope="col">Place total</th>
-            <th scope="col">Nombre d'inscrit</th>
-            <th scope="col">Place restante</th>
-        </tr>
-    </thead>
-    
+<div class="contourBlock">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Lieu</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de fin</th>
+                <th scope="col">Place total</th>
+                <th scope="col">Nombre d'inscrit</th>
+                <th scope="col">Place restante</th>
+            </tr>
+        </thead>
+        
         {# formation ce trouve dans FormationController #}
         {# On concaténe formation avec session pour récupérer la collection de session d'une formation #}
-        {% for session in formation.sessions %}
-            <tbody>
+
+        <tbody>
+            {% for session in formation.sessions %}
                 <tr>
                     {# la methode showDetailsSession ce trouve dans SessionController #}
                     <td><a href="{{ path('showDetailsSession',{'id': session.id}) }}">{{ session.lieu }}</a></td>
@@ -42,9 +52,9 @@
                     {# nbrestant ce trouve dans l'entity session, il permet de calculer le nombre de places restant à une session de formation #}
                     <td>{{ session.nbRestant }}</td>
                 </tr>
-            </tbody>
-        {% endfor %}
-</table>
-
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}

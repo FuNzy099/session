@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Atelier;
 use App\Entity\Session;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Session>
@@ -61,26 +62,21 @@ class SessionRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    // public function findNonProgrammer($session_id)
-    // {
-    //     $em = $this -> getEntityManager();
-    //     $sub = $em -> createQueryBuilder(); 
-    //     $qd = $sub;
-    //     $qd -> select('s')
-    //         -> from('App\Entity\Programme', 's') 
-    //         -> leftJoin('s.sessions', 'se')
-    //         -> where('se.id = :id'); 
-    //     $sub = $em -> createQueryBuilder();
+    public function findNonProgrammer($session_id){
+        $session = $this -> find($session_id);
+        $allModules = $this -> getEntityManager() -> getRepository(Atelier::class) -> findAll();
+        $tabProg = [];
 
-    //     $sub -> select('st')
-    //          -> from('App\Entity\Programme', 'st') 
-    //          -> where($sub -> expr() -> notIn('st.id', $qd -> getDQL())) 
-    //          -> setParameter('id', $session_id) 
-    //          -> orderBy('st.nbJours');   
-    //     $query = $sub -> getQuery(); 
-    //     return $query -> getResult();
+        foreach($session -> getProgrammesSession() as $programme){
+            $tabProg[] = $programme -> getAtelier();
+        }
 
-    // }
+        $result = array_diff($allModules, $tabProg);
+
+        return $result;
+    }
+
+
 
 
     //    /**

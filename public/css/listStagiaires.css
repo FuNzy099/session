@@ -1,0 +1,62 @@
+body{
+    background-image: url(../img/dark5.jpg);
+}
+
+h1{
+    margin: 50px 0 80px 0;
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.contourBlock {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black;
+    background-color: white;
+    margin-top: 25px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.modif{
+    padding: 3px 8px;
+    background-color: orange;
+    color: white;
+    border-color: orange;
+    font-weight: bold;
+}
+
+.modif:hover{
+    background-color: orangered;
+}
+
+.suppr{
+    padding: 3px 8px;
+    background-color: red;
+    color: white;
+    border-color: red;
+    font-weight: bold;
+}
+
+.suppr:hover{
+    background-color: rgb(129, 2, 2);
+}
+
+.valid{
+    padding: 3px 8px;
+    background-color: green;
+    color: white;
+    border-color: green ;
+    font-weight: bold;
+}
+
+.valid:hover{
+    background-color: rgb(0, 73, 0);
+}
+
+
+
+

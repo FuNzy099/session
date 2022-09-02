@@ -2,6 +2,13 @@
 
 {% block title %}Liste des stagiaires{% endblock %}
 
+{% block stylesheets %}
+
+    <link href="{{ asset('css/stylesLayout.css') }}" type="text/css" rel="stylesheet"  />
+    <link href="{{ asset('css/listStagiaires.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
 {% block body %}
 
 {# ! #}
@@ -11,39 +18,41 @@
 
 {% endfor %} #}
 
+<h1>Liste de l'enssemble des stagiaires</h1>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prenom</th>
-            <th scope="col">Date de naissance</th>
-            <th scope="col">Ville</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
+<div class="contourBlock">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
 
-    {# Boucle qui permets d'afficher tout les stagiaires #}
-    {% for stagiaire in stagiaires %}
-    <tbody>
-        <tr>
-            <td>{{stagiaire.nom }}</td>
-            <td>{{stagiaire.prenom }}</td>
-            <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
-            <td>{{stagiaire.ville }}</td>
-            <td>{{stagiaire.email }}</td>
-            <td>{{stagiaire.telephone }}</td>
-            <td>
-                <a href="{{ path('deleteStagiaire', {'id': stagiaire.id}) }}"> <button>supprimer</button> </a>
-                <a href="{{ path('modifierStagiaire', {'id': stagiaire.id}) }}"> <button>modifier</button> </a>
-            </td>
-        </tr>
-    </tbody>
-    {% endfor %}
-</table>
-
-<a href="{{ path('ajouterStagiaire') }}"> <button>Ajouter un stagiaire </button> </a>
+        {# Boucle qui permets d'afficher tout les stagiaires #}
+        <tbody>
+            {% for stagiaire in stagiaires %}
+                <tr>
+                    <td>{{stagiaire.nom }}</td>
+                    <td>{{stagiaire.prenom }}</td>
+                    <td>{{stagiaire.dateDeNaissance | date("d/m/Y")}}</td>
+                    <td>{{stagiaire.ville }}</td>
+                    <td>{{stagiaire.email }}</td>
+                    <td>{{stagiaire.telephone }}</td>
+                    <td>
+                        <a href="{{ path('deleteStagiaire', {'id': stagiaire.id}) }}"> <button class="suppr">supprimer</button> </a>
+                        <a href="{{ path('modifierStagiaire', {'id': stagiaire.id}) }}"> <button class="modif">modifier</button> </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        <p> <a href="{{ path('ajouterStagiaire') }}"> <button class="valid">Ajouter un stagiaire </button> </a> </p>
+</div>
 
 {% endblock %}

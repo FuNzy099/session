@@ -63,7 +63,6 @@ class Session
     public function __construct()
     {
         $this->stagiaires = new ArrayCollection();
-        $this->programmes = new ArrayCollection();
         $this->programmesSession = new ArrayCollection();
     }
 
@@ -213,4 +212,22 @@ class Session
         $nbInscrit = count($this->stagiaires);    //// On compte le nombre d'inscrit avec la function count()
         return $nbInscrit;                          //// On return le résultat
     }
+
+    public function nbProgrammes()
+    {
+        $nbProgrammes = count($this -> programmesSession);
+        return $nbProgrammes;
+    }
+
+    public function nbJoursToto()
+    {
+        $total = 0;
+        foreach($this -> programmesSession as $programme ){
+            $total += $programme->getNbJours();
+        }
+        return $total;
+    }
+
+
+    
 }
